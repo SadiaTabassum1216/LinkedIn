@@ -30,14 +30,6 @@ const register = asyncHandler( async (req, res) => {
     await user.save();
     console.log(user);
 
-    // if(user){
-    //     res.status(201).json({_id: user._id, email: user.email})
-    // }
-    // else{
-    //     res.status(400);
-    //     throw new Error("User data not valid.");
-    // }
-
         res.json({message:"Register the user"})
 });
 
@@ -46,6 +38,7 @@ const register = asyncHandler( async (req, res) => {
 //@access public
 const login = asyncHandler( async (req, res) => {
     const {email, password}=req.body;
+    console.log(req.body);
     
     if(!email || !password){
         res.status(400);
@@ -54,6 +47,7 @@ const login = asyncHandler( async (req, res) => {
 
     const user= await User.findOne({email});
     if(user && bcrypt.compare(password,user.password)){
+        
         //create jwt
         const accessToken= jwt.sign({
             user:{
@@ -67,16 +61,12 @@ const login = asyncHandler( async (req, res) => {
             expiresIn:"10m"
         }
         )
-        res.status(200).json({accessToken})
+        res.json({token: accessToken, message:"Login Successful"})
     }
     else{
-        res.status(401);
         throw new Error("Email or Password is not valid.");
     }
 
-
-
-    res.json({message:"Login the user"})
 });
 
 

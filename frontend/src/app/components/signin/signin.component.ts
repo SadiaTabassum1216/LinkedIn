@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-signin',
@@ -13,12 +13,12 @@ export class SigninComponent {
 
 
   constructor(private http: HttpClient,private router: Router) { }
+
   onSubmit() {
     this.http.post<any>('http://localhost:8000/api/users/login', this.user).subscribe(data => {
       console.log(data);
+      this.router.navigate(['/home']);
     });
  
-    this.router.navigate(['/home']);
-    
   }
 }

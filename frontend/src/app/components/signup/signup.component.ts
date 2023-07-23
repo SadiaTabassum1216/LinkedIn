@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { User } from '../models/user.model';
+import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class SignupComponent {
   user: User= new User();
   
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router: Router, private auth: AuthService) { }
 
   onSubmit() {
     this.http.post<any>('http://localhost:8000/api/users/register', this.user).subscribe(data => {

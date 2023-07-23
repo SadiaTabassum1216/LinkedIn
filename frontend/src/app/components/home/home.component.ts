@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../models/post.model';
+import { Post } from 'src/app/models/post.model'; 
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-home',
@@ -13,20 +13,26 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
   this.getPost();
   }
-  postContent: string = '';
-  newsfeed: Post[] = [];
 
-  constructor(private router: Router, private http: HttpClient){};
+  newsfeed: Post[] = [];
+  newPost: Post= new Post();
+
+  constructor(private router: Router, private postService: PostService){};
 
   getPost(){
-    this.http.get<any[]>('http://localhost:8000/api/post').subscribe(data => {  
+    this.postService.getAll().subscribe(data => {  
       console.log(data);   
+      this.newsfeed=data;
+     
     });
 
   }
 
   onPost() {
-   
+    this.postService.create(this.newPost).subscribe(data => {
+      console.log(data);
+      this.newPost= new Post();
+    });
   }
 
   onLogout() {

@@ -10,6 +10,7 @@ const port=process.env.PORT || 5555;
 connectDB();
 app.use(express.json());    //middleware to parse the datastream
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/posts", require("./routes/postRoutes"));
 
 app.listen(port, ()=>{
     console.log('server is running on port ',port);
