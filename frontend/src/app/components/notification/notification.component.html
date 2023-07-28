@@ -18,7 +18,10 @@
   <h2>Notifications</h2>
   <div class="notification-list">   
     <ng-container *ngFor="let notification of notificationList.slice().reverse()">
-      <div class="notification-item" (click)="fetchPost(notification.postId)" *ngIf="notification.senderUserId !== userId">
+      <div class="notification-item" 
+      (click)="fetchPost(notification._id)" 
+      *ngIf="notification.senderUserId !== userId"
+      [ngClass]="{ 'bold-text': !notification.seen }">
         <span class="notification-text">{{notification.message}}    </span>
         <span class="notification-time">{{notification.time}}</span>
       </div>

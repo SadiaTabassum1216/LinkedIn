@@ -9,6 +9,7 @@ const getAllNotification = asyncHandler(async (req, res) => {
     try {
         const notifications = await Notification.find();
         res.json(notifications);
+        console.log(notifications);
       } catch (error) {
         res.status(500).json({ message: 'Failed to fetch notifications' });
       }
@@ -16,15 +17,27 @@ const getAllNotification = asyncHandler(async (req, res) => {
 
 
 //@desc Get post from notification
-//@route GET /api/notifications/post/:postId
+//@route GET /api/notifications/post/:notificationId
 const getPost = asyncHandler(async (req, res) => {
-  try {   
-    const postId = req.params.postId;
+  try {  
+    const notificationId = req.params.notificationId; 
+    // const postId = req.params.postId;
 
+    const notification = await Notification.findById(notificationId);
+
+    if (!notification) {
+      return res.status(404).json({ message: 'Notification not found' });
+    }
+
+    notification.seen = true;
+    await notification.save();
+
+    const postId = notification.postId;
     const post = await Post.findById(postId);
 
+
     if (post) {
-      // console.log('Found post:', post);
+      console.log('Found post:', post);
       res.status(200).json(post);
     } else {
       console.log('Post not found.');

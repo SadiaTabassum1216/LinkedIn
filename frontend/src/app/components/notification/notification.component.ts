@@ -14,7 +14,7 @@ import { Post } from 'src/app/models/post.model';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent {
-  constructor(private router: Router,  private dialog: MatDialog, private authService: AuthService, private notificationService: NotificationService){};
+  constructor(private router: Router, private dialog: MatDialog, private authService: AuthService, private notificationService: NotificationService) { };
   userId = localStorage.getItem("userId");
   username = localStorage.getItem("username");
 
@@ -27,30 +27,33 @@ export class NotificationComponent {
     }
   }
 
-  notificationList: Notification[]=[];
+  notificationList: Notification[] = [];
 
 
   getNotifications() {
     this.notificationService.getAllNotification().subscribe(data => {
       this.notificationList = data;
+      // console.log(this.notificationList.map(notification => notification._id));
     });
   }
 
-  postdata: Post= new Post();
+  postdata: Post = new Post();
 
-  fetchPost(id: any){
+  fetchPost(id: any) {
     this.notificationService.getPost(id).subscribe(data => {
       console.log(data);
-      this.postdata=data;
+      this.postdata = data;
+      this.openPostModal(this.postdata);
+      this.postdata = new Post();
     });
-    this.openPostModal(this.postdata);
+
   }
 
   openPostModal(postData: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = postData;
     dialogConfig.width = '40%';
-    dialogConfig.position = {left: '30%' };
+    dialogConfig.position = { left: '30%' };
 
     this.dialog.open(ModalComponent, dialogConfig);
   }

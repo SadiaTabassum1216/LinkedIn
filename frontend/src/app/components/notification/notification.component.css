@@ -3,6 +3,11 @@
     margin: 0 auto;
     padding: 20px;
   }
+
+  .bold-text {
+    font-weight: bold;
+  }
+  
   .user-info {
     display: flex;
     align-items: center;

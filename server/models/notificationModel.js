@@ -14,9 +14,14 @@ const notificationSchema = new mongoose.Schema({
   message: {
     type: String,
   },
+  seen: {
+    type: Boolean,
+    default: false,
+  },
   time: {
     type: Date,
     default: Date.now,
+    expires: '1h',
   },
 });
 

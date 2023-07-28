@@ -3,6 +3,7 @@ export class Post {
     userName: string='';
     userId: string='';
     text: string='';
+    image: any;
     fileURL: string='';
     time: any;
 }

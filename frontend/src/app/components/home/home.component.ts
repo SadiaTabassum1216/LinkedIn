@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   newsfeed: Post[] = [];
   newPost: Post = new Post();
-  selectedImage: File | null = null;
+  selectedImage: any;
 
 
   getPost() {
@@ -35,14 +35,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    if (inputElement?.files && inputElement.files.length > 0) {
-      this.selectedImage = inputElement.files[0];
-    }
+  onFileSelected(event: any) {
+    this.newPost.image  = event.target.files[0];
   }
-
-
+  
   onPost() {
     if (this.userId !== null) {
       this.newPost.userId = this.userId;
@@ -51,15 +47,15 @@ export class HomeComponent implements OnInit {
     this.postService.create(this.newPost).subscribe(data => {
       this.newPost = data;
       console.log(data);
+
+      this.notificationService.createNotification(this.newPost).subscribe(data => {
+        console.log(data);
+        this.newPost = new Post();
+        window.location.reload();
+      });
     });
     
-    this.notificationService.createNotification(this.newPost).subscribe(data => {
-      console.log(data);
-      this.newPost = new Post();
-    });
-
-    window.location.reload();
-
+    
   }
 
 

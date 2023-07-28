@@ -1,7 +1,8 @@
 export class Notification {
-    id: string='';
+    _id: string='';
     senderUserId: string='';
     postId: string='';
     message: string='';
     time: any;
+    seen: boolean=false;
 }
