@@ -17,6 +17,8 @@ const createPost = asyncHandler(async (req, res) => {
   });
 
   await newPost.save();
+  // console.log(newPost);
+  return res.status(201).json(newPost);
 });
 
 
@@ -24,7 +26,6 @@ const createPost = asyncHandler(async (req, res) => {
 //@route GET /api/posts/home
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
-    console.log("fetching newsfeed");
     const posts = await Post.find();
     res.json(posts);
   } catch (error) {

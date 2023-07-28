@@ -2,11 +2,11 @@
   <div class="navbar-brand">LinkedIn</div>
   <div class="navbar-items">
    
-    <div class="navbar-notification">
+    <div class="navbar-notification" >
       <i class="fa fa-user" aria-hidden="true"></i>{{ username }}
   </div>
       <div class="navbar-notification"  routerLink="/home">
-          <i class="fa fa-bell" aria-hidden="true"></i>Home
+          Home
       </div>
       <div class="navbar-logout">
           <button (click)="logout()">Logout</button>
@@ -16,14 +16,13 @@
 <div class="notification-container">
   
   <h2>Notifications</h2>
-  <div class="notification-list">
-    <div class="notification-item">
-      <span class="notification-text">You have a new message from John Doe</span>
-      <span class="notification-time">2 hours ago</span>
-    </div>
-    <div class="notification-item">
-      <span class="notification-text">Your post has received 10 likes</span>
-      <span class="notification-time">3 hours ago</span>
-    </div>
+  <div class="notification-list">   
+    <ng-container *ngFor="let notification of notificationList.slice().reverse()">
+      <div class="notification-item" (click)="fetchPost(notification.postId)" *ngIf="notification.senderUserId !== userId">
+        <span class="notification-text">{{notification.message}}    </span>
+        <span class="notification-time">{{notification.time}}</span>
+      </div>
+    </ng-container>
+    
   </div>
 </div>

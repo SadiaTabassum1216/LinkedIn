@@ -9,6 +9,9 @@ import { NotificationComponent } from './components/notification/notification.co
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalComponent } from './components/notification/modal/modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     SigninComponent,
     HomeComponent,
-    NotificationComponent
+    NotificationComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     RouterModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

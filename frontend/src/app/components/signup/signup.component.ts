@@ -15,7 +15,6 @@ export class SignupComponent {
 
   onSubmit() {
     this.auth.register(this.user).subscribe(data => {
-      console.log(data);
       this.user= new User();
       this.router.navigate(['/login']);
     });

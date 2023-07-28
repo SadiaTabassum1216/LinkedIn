@@ -20,14 +20,12 @@ export class SigninComponent {
     this.authService.login(this.user).subscribe(
       (result: any) => {
         if (result) {
-          console.log("Logged in User: ", this.user);
           localStorage.setItem("token", result.token);
           localStorage.setItem("userId", result.userId);
           localStorage.setItem("username", result.username);
           this.router.navigate(['/home']);
         }
         else {
-          console.log("result: ", result)
           this.errorMessage = result.message || 'Unknown error occurred';
         }
       },

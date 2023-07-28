@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get("/",getAllNotification , validateToken);
 router.post("/create",createNotification , validateToken);
-router.get("/post/`{id}`",getPost , validateToken);
+router.get("/post/:postId",getPost , validateToken);
 
 module.exports =router;

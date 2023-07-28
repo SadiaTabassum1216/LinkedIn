@@ -1,0 +1,34 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .close-button {
+    background-color: #2196F3; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #1976D2; 
+  }
+  
+  .close-button:focus {
+    outline: none;
+  }
+  
+  .close-button:active {
+    background-color: #0D47A1;
+  }

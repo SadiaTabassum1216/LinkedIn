@@ -16,10 +16,6 @@ export class HomeComponent implements OnInit {
   userId = localStorage.getItem("userId");
   token = localStorage.getItem("token");
   ngOnInit(): void {
-
-    console.log(this.userId);
-    console.log(this.token);
-
     if (!this.token) {
       this.router.navigate(['/login']);
     } else {
@@ -35,7 +31,6 @@ export class HomeComponent implements OnInit {
 
   getPost() {
     this.postService.getAllPost().subscribe(data => {
-      console.log(data);
       this.newsfeed = data;
     });
   }
@@ -53,15 +48,17 @@ export class HomeComponent implements OnInit {
       this.newPost.userId = this.userId;
     }
 
-    // console.log(this.newPost); 
-
     this.postService.create(this.newPost).subscribe(data => {
+      this.newPost = data;
+      console.log(data);
+    });
+    
+    this.notificationService.createNotification(this.newPost).subscribe(data => {
       console.log(data);
       this.newPost = new Post();
     });
-    this.notificationService.createNotification(this.newPost).subscribe(data => {
-      console.log(data);
-    });
+
+    window.location.reload();
 
   }
 

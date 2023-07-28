@@ -16,13 +16,11 @@ export class PostService {
 
   getAllPost(): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
-    console.log("headers: ", headers);
     return this.http.get<any>(`${baseUrl}/home`, { headers });
   }
 
   create(data: any): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
-    console.log("headers: ", headers);
     return this.http.post(`${baseUrl}/create`, data, { headers });
   }
   

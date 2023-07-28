@@ -14,19 +14,19 @@ export class NotificationService {
 
   createNotification(data: any): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
-    console.log("headers: ", headers);
     return this.http.post(`${baseUrl}/create`, data, { headers });
   }
 
-  // getNotification(id: any): Observable<any> {
-  // let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
-  // console.log("headers: ",headers);
-  //   return this.http.get<any>(`${baseUrl}`, { headers });
-  // }
 
-  // getPost(id: any): Observable<any> {
-  // let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
-  // console.log("headers: ",headers);
-  //   return this.http.get(`${baseUrl}/post/${id}`);
-  // }
+  getAllNotification(): Observable<any> {
+    let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
+    return this.http.get<any>(`${baseUrl}/`, { headers });
+  }
+ 
+
+  getPost(postId: any): Observable<any> {
+  let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
+  console.log("headers: ",headers);
+    return this.http.get(`${baseUrl}/post/${postId}`,{ headers });
+  }
 }
