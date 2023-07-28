@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -9,16 +9,32 @@ import { User } from '../../models/user.model';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-  user: User= new User();
+  user: User = new User();
 
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
+
+  errorMessage: string = '';
+
+  login() {
+    this.authService.login(this.user).subscribe(
+      (result: any) => {
+        if (result) {
+          console.log("Logged in User: ", this.user);
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("userId", result.userId);
+          localStorage.setItem("username", result.username);
+          this.router.navigate(['/home']);
+        }
+        else {
+          console.log("result: ", result)
+          this.errorMessage = result.message || 'Unknown error occurred';
+        }
+      },
+    );
+  }
 
   onSubmit() {
-    this.http.post<any>('http://localhost:8000/api/users/login', this.user).subscribe(data => {
-      console.log(data);
-      this.router.navigate(['/home']);
-    });
- 
+    this.login();
   }
 }

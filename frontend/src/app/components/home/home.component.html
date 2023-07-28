@@ -1,26 +1,32 @@
-
-    <nav class="navbar">
-        <div class="navbar-brand">LinkedIn</div>
-        <div class="navbar-items">
-            <div class="navbar-notification"  routerLink="/notification">
-                <i class="fa fa-bell" aria-hidden="true"></i>Notifications
-                <span class="notification-count">5</span>
-            </div>
-            <div class="navbar-logout">
-                <button (click)="onLogout()">Logout</button>
-            </div>
+<nav class="navbar">
+    <div class="navbar-brand">LinkedIn</div>
+    <div class="navbar-items">
+        <div class="navbar-notification" routerLink="/notification">
+            <i class="fa fa-bell" aria-hidden="true"></i>Notifications
+            <!-- <span class="notification-count">5</span> -->
         </div>
-    </nav>
-    <div class="create-post">
-      
-        <textarea placeholder="Write your post..." [(ngModel)]="newPost.title"></textarea>
-        <br>
-        <button (click)="onPost()">Post</button>
-    </div>
-    <div class="newsfeed">
-
-        <div class="newsfeed-item" *ngFor="let post of newsfeed">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.body }}</p>
+        <div class="navbar-logout">
+            <button (click)="logout()">Logout</button>
         </div>
     </div>
+</nav>
+
+<div class="create-post">
+    <textarea placeholder="Write your post..." [(ngModel)]="newPost.text"></textarea>
+    <br>
+    <input type="file" (change)="onFileSelected($event)">
+    <br>
+    <button (click)="onPost()" class="custom-button">Post</button>
+  </div>
+  
+
+  <div class="newsfeed">
+    <ng-container *ngFor="let post of newsfeed.slice().reverse()">
+        <div class="newsfeed-item" *ngIf="post.userId !== userId">
+            <h3>{{post.userName}}</h3>
+            <pre>{{ post.time }}</pre>
+            <p>{{ post.text }}</p>
+            <p>{{ post.fileURL }}</p>
+        </div>
+    </ng-container>
+</div>

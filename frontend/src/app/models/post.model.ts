@@ -1,6 +1,8 @@
 export class Post {
     id: string='';
+    userName: string='';
     userId: string='';
-    title: string='';
-    body: string='';
+    text: string='';
+    fileURL: string='';
+    time: any;
 }

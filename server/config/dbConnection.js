@@ -14,17 +14,5 @@ const connectDB = async () => {
   }
 };
 
-// const connectDB= async () =>{
-//     try{
-//      const connect= await mongoose.connect(`process.env.CONNECTION_STRING/linkedin`);
-//      const db= mongoose.connection
-//     //  db.once('open', () => console.log('Connected to database'))
-//      console.log("Database connected");
-//     }catch(err){
-//         console.log('Could not connect');
-//         process.exit(1);
-        
-//     }
-// }
 
-module.exports= connectDB;
+module.exports= {connectDB};

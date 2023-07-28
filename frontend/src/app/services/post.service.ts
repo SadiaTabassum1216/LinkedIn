@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Post } from '../models/post.model';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
-const baseUrl = 'http://localhost:8000/api/posts';
+const baseUrl = `${environment.apiUrl}/posts`;
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +14,17 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(baseUrl);
+  getAllPost(): Observable<any> {
+    let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
+    console.log("headers: ", headers);
+    return this.http.get<any>(`${baseUrl}/home`, { headers });
   }
 
-  get(id: any): Observable<any> {
-    return this.http.get(`${baseUrl}/${id}`);
-  }
- 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
+    console.log("headers: ", headers);
+    return this.http.post(`${baseUrl}/create`, data, { headers });
   }
+  
+  
 }

@@ -1,9 +1,9 @@
 const express = require("express");
-const { post, allPost, notification } = require("../controllers/postController");
+const { createPost , getAllPosts } = require("../controllers/postController");
+const validateToken = require("../middleware/tokenHandler");
 const router = express.Router();
 
-router.post("/post", post);
-router.get("/posts", allPost);
-router.post("/notification",notification);
+router.post("/create", createPost ,validateToken);
+router.get("/home", getAllPosts,validateToken);
 
 module.exports =router;
