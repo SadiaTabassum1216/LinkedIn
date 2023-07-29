@@ -1,9 +1,12 @@
 <nav class="navbar">
     <div class="navbar-brand">LinkedIn</div>
     <div class="navbar-items">
+        <div class="navbar-notification" >
+            <i class="fa fa-user" aria-hidden="true"></i>{{ username }}
+        </div>
         <div class="navbar-notification" routerLink="/notification">
             <i class="fa fa-bell" aria-hidden="true"></i>Notifications
-            <!-- <span class="notification-count">5</span> -->
+            <span class="notification-count">{{unseenCount}}</span>
         </div>
         <div class="navbar-logout">
             <button (click)="logout()">Logout</button>
@@ -30,11 +33,13 @@
 
   <div class="newsfeed">
     <ng-container *ngFor="let post of newsfeed.slice().reverse()">
+        <div class="newsfeed-item">
         <!-- <div class="newsfeed-item" *ngIf="post.userId !== userId"> -->
             <h3>{{post.userName}}</h3>
-            <pre>{{ post.time }}</pre>
+            <pre>{{ post.time | date: 'medium' }}</pre>
             <p>{{ post.text }}</p>
-            <p>{{ post.fileURL }}</p>
-        <!-- </div> -->
+            <img *ngIf="post.image" [src]="'http://localhost:3000/api/images/' + post.image" alt="Post Image">
+            <!-- <p>{{ post.fileURL }}</p> -->
+        </div>
     </ng-container>
 </div>

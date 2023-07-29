@@ -16,6 +16,7 @@ export class ModalComponent {
 
   closeModal() {
     this.postData= new Post();
+    window.location.reload();
     this.dialogRef.close();
   }
 

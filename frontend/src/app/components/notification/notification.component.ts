@@ -14,7 +14,10 @@ import { Post } from 'src/app/models/post.model';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent {
-  constructor(private router: Router, private dialog: MatDialog, private authService: AuthService, private notificationService: NotificationService) { };
+  constructor(private router: Router,
+    private dialog: MatDialog,
+    private authService: AuthService,
+    private notificationService: NotificationService) { };
   userId = localStorage.getItem("userId");
   username = localStorage.getItem("username");
 
@@ -29,11 +32,9 @@ export class NotificationComponent {
 
   notificationList: Notification[] = [];
 
-
   getNotifications() {
     this.notificationService.getAllNotification().subscribe(data => {
       this.notificationList = data;
-      // console.log(this.notificationList.map(notification => notification._id));
     });
   }
 

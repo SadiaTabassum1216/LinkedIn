@@ -13,10 +13,16 @@ const baseUrl = `${environment.apiUrl}/posts`;
 export class PostService {
 
   constructor(private http: HttpClient) { }
+  
 
   getAllPost(): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
     return this.http.get<any>(`${baseUrl}/home`, { headers });
+  }
+
+  uploadImage(data: any): Observable<any> {
+    let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)
+    return this.http.post(`${baseUrl}/upload`, data, { headers });
   }
 
   create(data: any): Observable<any> {

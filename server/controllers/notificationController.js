@@ -3,10 +3,19 @@ const Notification =require("../models/notificationModel");
 const Post = require("../models/postModel");
 
 
-//@desc Get all notifications
+//@desc DELETE old notifications, Get remaining notifications
 //@route GET /api/notifications/
 const getAllNotification = asyncHandler(async (req, res) => {
-    try {
+  try {
+    const sixHoursAgo = new Date();
+    sixHoursAgo.setHours(sixHoursAgo.getHours() - 6);
+
+    const oldNotifications = await Notification.find({ time: { $lt: sixHoursAgo } });
+
+    for (const notification of oldNotifications) {
+      await notification.remove();
+    }
+    
         const notifications = await Notification.find();
         res.json(notifications);
         console.log(notifications);

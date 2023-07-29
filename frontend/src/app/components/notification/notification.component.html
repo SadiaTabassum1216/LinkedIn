@@ -23,7 +23,7 @@
       *ngIf="notification.senderUserId !== userId"
       [ngClass]="{ 'bold-text': !notification.seen }">
         <span class="notification-text">{{notification.message}}    </span>
-        <span class="notification-time">{{notification.time}}</span>
+        <span class="notification-time">{{notification.time | date: 'medium'}}</span>
       </div>
     </ng-container>
     
