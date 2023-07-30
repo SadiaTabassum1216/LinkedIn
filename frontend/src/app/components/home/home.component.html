@@ -16,12 +16,12 @@
 
 
 <div class="create-post">
-    <textarea placeholder="Write your post..." [(ngModel)]="newPost.text"></textarea>
+    <textarea name="text" placeholder="Write your post..." [(ngModel)]="newPost.text"></textarea>
     <br><br>
     <label for="fileInput" class="file-button">
         Add Photos
       </label>
-      <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+      <input type="file" name="image"  class="form-control"  id="fileInput" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
       
     <br>
     <div class="button-container">

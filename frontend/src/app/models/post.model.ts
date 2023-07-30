@@ -3,7 +3,7 @@ export class Post {
     userName: string='';
     userId: string='';
     text: string='';
-    image: File | null = null;
+    image: any;
     fileURL: string='';
     time: any;
 }

@@ -14,6 +14,7 @@ const postSchema = new mongoose.Schema({
   text: {
     type: String,
   },
+  
   fileURL: {
     type: String,
     default: '',

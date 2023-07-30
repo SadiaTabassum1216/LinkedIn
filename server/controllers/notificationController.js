@@ -18,7 +18,7 @@ const getAllNotification = asyncHandler(async (req, res) => {
     
         const notifications = await Notification.find();
         res.json(notifications);
-        console.log(notifications);
+        // console.log(notifications);
       } catch (error) {
         res.status(500).json({ message: 'Failed to fetch notifications' });
       }
@@ -63,7 +63,7 @@ const getPost = asyncHandler(async (req, res) => {
 //@route POST /api/notifications/
 const createNotification = asyncHandler(async (req, res) => {
   const { userName, _id , userId,} = req.body;
-  console.log("request body: ",req.body);
+  // console.log("request body: ",req.body);
 
   const newNotification = new Notification({
     senderUserId: userId,
