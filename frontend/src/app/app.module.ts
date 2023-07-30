@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './components/notification/modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     SigninComponent,
     HomeComponent,
     NotificationComponent,
-    ModalComponent
+    ModalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

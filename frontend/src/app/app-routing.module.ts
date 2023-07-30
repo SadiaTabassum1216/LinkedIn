@@ -4,6 +4,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: SigninComponent },
   { path: 'home', component: HomeComponent },
   { path: 'notification', component: NotificationComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: 'login' },
 ];
 

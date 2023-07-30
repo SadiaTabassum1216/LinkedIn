@@ -55,11 +55,23 @@ export class HomeComponent implements OnInit {
     const formData = new FormData();
     if (this.newPost.image !== null) {
       formData.append('image', this.newPost.image, this.newPost.image.name);
+
+      this.postService.uploadImage(formData).subscribe(data => {
+        this.newPost.fileURL = data.url;
+
+        this.postService.create(this.newPost).subscribe(data => {
+          this.newPost = data;
+
+          this.notificationService.create(this.newPost).subscribe(() => {
+            this.newPost = new Post();
+            window.location.reload();
+          });
+
+        })
+      });
     }
 
-    this.postService.uploadImage(formData).subscribe(data => {
-      this.newPost.fileURL = data.url;
-
+    else{
       this.postService.create(this.newPost).subscribe(data => {
         this.newPost = data;
 
@@ -69,11 +81,7 @@ export class HomeComponent implements OnInit {
         });
 
       })
-
-
-    });
-
-
+    }
   }
 
 

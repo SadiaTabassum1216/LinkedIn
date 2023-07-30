@@ -1,12 +1,12 @@
 <nav class="navbar">
     <div class="navbar-brand">LinkedIn</div>
     <div class="navbar-items">
-        <div class="navbar-notification" >
-            <i class="fa fa-user" aria-hidden="true"></i>{{ username }}
+        <div class="navbar-notification" routerLink="/profile">
+            <i class="fa fa-user" aria-hidden="true" ></i>{{ username }}
         </div>
         <div class="navbar-notification" routerLink="/notification">
             <i class="fa fa-bell" aria-hidden="true"></i>Notifications
-            <span class="notification-count">{{unseenCount}}</span>
+            <!-- <span class="notification-count">{{unseenCount}}</span> -->
         </div>
         <div class="navbar-logout">
             <button (click)="logout()">Logout</button>
@@ -14,8 +14,9 @@
     </div>
 </nav>
 
-
+<br> 
 <div class="create-post">
+   
     <textarea name="text" placeholder="Write your post..." [(ngModel)]="newPost.text"></textarea>
     <br><br>
     <label for="fileInput" class="file-button">
@@ -30,16 +31,15 @@
       
   </div>
   
-
   <div class="newsfeed">
     <ng-container *ngFor="let post of newsfeed.slice().reverse()">
-        <div class="newsfeed-item">
-        <!-- <div class="newsfeed-item" *ngIf="post.userId !== userId"> -->
+        <div class="newsfeed-item" *ngIf="post.userId !== userId">
             <h3>{{post.userName}}</h3>
-            <pre>{{ post.time | date: 'medium' }}</pre>
+            <pre>{{ post.time | date: 'short' }}</pre><br>
             <p>{{ post.text }}</p>
-            <img *ngIf="post.image" [src]="'http://localhost:3000/api/images/' + post.image" alt="Post Image">
-            <!-- <p>{{ post.fileURL }}</p> -->
+            <img *ngIf="post.fileURL" [src]="'http://localhost:9000/linkedin/'+post.fileURL" alt="Post Image">
+            <br>
+
         </div>
     </ng-container>
 </div>

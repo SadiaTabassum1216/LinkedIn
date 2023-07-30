@@ -2,11 +2,12 @@ const asyncHandler = require("express-async-handler");
 const multer = require('multer');
 const Post = require("../models/postModel");
 const User = require("../models/userModel");
-const minio= require("../config/minio");
-const minioClient =minio.connectToMinio();
+const minio = require("../config/minio");
+const minioClient = minio.connectToMinio();
 
 const bucketName = 'linkedin';
-const upload = multer({ dest: 'uploads/' });
+const storage = 'uploads';
+const upload = multer({ dest: storage });
 
 
 async function uploadToMinio(file) {
@@ -27,31 +28,6 @@ async function uploadToMinio(file) {
   return objectKey;
 }
 
-// const getImageFromMinio = (imageId) => {
-//   return new Promise((resolve, reject) => {
-//       minioClient.getObject('linked-in', imageId, (err, dataStream) => {
-//           if (err) {
-//               reject(err);
-//           } else {
-//               const chunks = [];
-//               dataStream.on('data', (chunk) => {
-//                   chunks.push(chunk);
-//               });
-
-//               dataStream.on('end', () => {
-//                   const imageData = Buffer.concat(chunks);
-//                   resolve(imageData);
-//               });
-
-//               dataStream.on('error', (err) => {
-//                   reject(err);
-//               });
-//           }
-//       });
-//   });
-// };
-
-
 //@desc upload image
 //@route POST /api/posts/upload
 const uploadImage = asyncHandler(async (req, res) => {
@@ -66,7 +42,10 @@ const uploadImage = asyncHandler(async (req, res) => {
     if (req.file) {
       _imageId = await uploadToMinio(req.file);
     }
-    _imageId = _imageId ? _imageId : null;
+
+    if (!_imageId) {
+      return res.status(400).json({ error: 'No file uploaded.', url: _imageId });
+    }
 
     return res.status(200).json({ message: 'File uploaded successfully.', url: _imageId });
   });
@@ -74,24 +53,25 @@ const uploadImage = asyncHandler(async (req, res) => {
 });
 
 
+
 //@desc Create a new post
 //@route POST /api/posts/create
 const createPost = asyncHandler(async (req, res) => {
   const { text, userId, fileURL } = req.body;
   console.log("request: ", req.body);
-  
-    const user = await User.findById(userId);
 
-    const newPost = new Post({
-      userId,
-      userName: user.name,
-      text,
-      fileURL,
-    });
+  const user = await User.findById(userId);
 
-    await newPost.save();
-    // console.log("Post: ", res.json(newPost))
-    return res.status(201).json(newPost);
+  const newPost = new Post({
+    userId,
+    userName: user.name,
+    text,
+    fileURL,
+  });
+
+  await newPost.save();
+  // console.log("Post: ", res.json(newPost))
+  return res.status(201).json(newPost);
 
 });
 
@@ -101,6 +81,7 @@ const createPost = asyncHandler(async (req, res) => {
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
     const posts = await Post.find();
+
     res.json(posts);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch posts' });

@@ -2,11 +2,11 @@
   <div class="navbar-brand">LinkedIn</div>
   <div class="navbar-items">
    
-    <div class="navbar-notification" >
+    <div class="navbar-notification" routerLink="/profile">
       <i class="fa fa-user" aria-hidden="true"></i>{{ username }}
   </div>
       <div class="navbar-notification"  routerLink="/home">
-          Home
+        <i class="fa fa-home"></i>Home
       </div>
       <div class="navbar-logout">
           <button (click)="logout()">Logout</button>

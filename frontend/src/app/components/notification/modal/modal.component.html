@@ -1,7 +1,7 @@
 <div class="modal">
     <h2>{{postData.userName}}</h2>
     <p>{{postData.text}}</p>
-    <!-- Display other post properties as needed -->
+    <img *ngIf="postData.fileURL" [src]="'http://localhost:9000/linkedin/'+postData.fileURL" alt="Post Image">
     <button class="close-button" (click)="closeModal()">Close</button>
   </div>
   <div class="overlay"></div>
