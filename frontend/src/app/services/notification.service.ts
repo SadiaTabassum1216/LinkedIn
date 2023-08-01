@@ -11,22 +11,7 @@ const baseUrl = `${environment.apiUrl}/notifications`;
 export class NotificationService {
 
   constructor(private http: HttpClient) { }
-  unseenCount: number = 0;
   userId = localStorage.getItem("userId");
-
-  getUnseenCount(): number {
-    return this.unseenCount;
-  }
-
-  setUnseenCount() {
-    this.getAllNotification().subscribe(data => {
-      const unseenNotifications = data.filter((notification: {
-        senderUserId: string | null; seen: any;
-      }) => !notification.seen && notification.senderUserId !== this.userId);
-      this.unseenCount = (unseenNotifications.length);
-
-    });
-  }
 
   create(data: any): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`)

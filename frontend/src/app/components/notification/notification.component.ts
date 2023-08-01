@@ -20,10 +20,11 @@ export class NotificationComponent {
     private notificationService: NotificationService) { };
   userId = localStorage.getItem("userId");
   username = localStorage.getItem("username");
+  token = localStorage.getItem("token");
 
   ngOnInit(): void {
-    if (!this.isLoggedIn()) {
-      this.router.navigate(['/signin']);
+    if (!this.token) {
+      this.router.navigate(['/login']);
     }
     else {
       this.getNotifications();
@@ -57,10 +58,6 @@ export class NotificationComponent {
     dialogConfig.position = { left: '30%' };
 
     this.dialog.open(ModalComponent, dialogConfig);
-  }
-
-  isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
   }
 
   logout() {

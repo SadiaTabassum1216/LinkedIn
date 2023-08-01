@@ -17,7 +17,6 @@ export class ProfileComponent {
   userId = localStorage.getItem("userId");
   username = localStorage.getItem("username");
   token = localStorage.getItem("token");
-  unseenCount: number = 0;
 
   ngOnInit(): void {
     if (!this.token) {
