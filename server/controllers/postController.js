@@ -67,9 +67,9 @@ const uploadPost = asyncHandler(async (req, res) => {
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
     const posts = await Post.find();
-
     res.json(posts);
-  } catch (error) {
+  } 
+  catch (error) {
     res.status(500).json({ message: 'Failed to fetch posts' });
   }
 });

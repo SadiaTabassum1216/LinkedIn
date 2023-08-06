@@ -3,22 +3,13 @@ const Notification =require("../models/notificationModel");
 const Post = require("../models/postModel");
 
 
-//@desc DELETE old notifications, Get remaining notifications
+//@desc Get remaining notifications
 //@route GET /api/notifications/
 const getAllNotification = asyncHandler(async (req, res) => {
   try {
-    const sixHoursAgo = new Date();
-    sixHoursAgo.setHours(sixHoursAgo.getHours() - 6);
-
-    const oldNotifications = await Notification.find({ time: { $lt: sixHoursAgo } });
-
-    for (const notification of oldNotifications) {
-      await notification.remove();
-    }
-    
         const notifications = await Notification.find();
         res.json(notifications);
-        // console.log(notifications);
+        
       } catch (error) {
         res.status(500).json({ message: 'Failed to fetch notifications' });
       }
@@ -46,7 +37,7 @@ const getPost = asyncHandler(async (req, res) => {
 
 
     if (post) {
-      console.log('Found post:', post);
+      // console.log('Found post:', post);
       res.status(200).json(post);
     } else {
       console.log('Post not found.');
