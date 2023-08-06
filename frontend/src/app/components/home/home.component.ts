@@ -52,35 +52,21 @@ export class HomeComponent implements OnInit {
     }
 
     const formData = new FormData();
+    formData.append('userId', this.newPost.userId);
+    formData.append('text', this.newPost.text);
+
     if (this.newPost.image !== null) {
       formData.append('image', this.newPost.image, this.newPost.image.name);
+    }
 
-      this.postService.uploadImage(formData).subscribe(data => {
-        this.newPost.fileURL = data.url;
+    this.postService.create(formData).subscribe(data => {
+      this.newPost = data;
 
-        this.postService.create(this.newPost).subscribe(data => {
-          this.newPost = data;
-
-          this.notificationService.create(this.newPost).subscribe(() => {
-            this.newPost = new Post();
-            window.location.reload();
-          });
-
-        })
+      this.notificationService.create(this.newPost).subscribe(() => {
+        this.newPost = new Post();
+        window.location.reload();
       });
-    }
-
-    else{
-      this.postService.create(this.newPost).subscribe(data => {
-        this.newPost = data;
-
-        this.notificationService.create(this.newPost).subscribe(() => {
-          this.newPost = new Post();
-          window.location.reload();
-        });
-
-      })
-    }
+    })
   }
 
 

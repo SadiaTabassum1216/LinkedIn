@@ -12,9 +12,7 @@ const port=process.env.PORT || 5555;
 const bucket= 'linkedin';
 
 connectDB();
-connectToMinio();
 
-// createMinioBucket(process.env.BUCKET_NAME);
 createMinioBucket(bucket);
 
 
