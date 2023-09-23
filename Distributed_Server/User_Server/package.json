@@ -1,5 +1,5 @@
 {
-  "name": "post_server",
+  "name": "user_service",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

@@ -7,5 +7,5 @@ app.use(express.json());
 app.use("/api/notifications", require("./routes/notificationRoutes"));
 
 app.listen(port, ()=>{
-    console.log('Post server is running on port ',port);
+    console.log('Notificaton server is running on port ',port);
 })
