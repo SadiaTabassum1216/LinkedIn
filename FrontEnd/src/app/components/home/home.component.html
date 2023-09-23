@@ -1,0 +1,46 @@
+<nav class="navbar">
+    <div class="navbar-brand">LinkedIn</div>
+    <div class="navbar-items">
+        <div class="navbar-notification" routerLink="/profile">
+            <i class="fa fa-user" aria-hidden="true"></i>{{ username }}
+        </div>
+        <div class="navbar-notification" routerLink="/notification">
+            <i class="fa fa-bell" aria-hidden="true"></i>Notifications
+            <!-- <span class="notification-count">{{unseenCount}}</span> -->
+        </div>
+        <div class="navbar-logout">
+            <button class="btn btn-primary" (click)="logout()">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<br>
+<div class="create-post">
+
+    <textarea name="text" placeholder="Write your post..." [(ngModel)]="newPost.text"></textarea>
+    <br><br>
+    <label for="fileInput" class="file-button">
+        Add Photos
+    </label>
+    <input type="file" name="image" class="form-control" id="fileInput" (change)="onFileSelected($event)"
+        accept="image/*" style="display: none;">
+
+    <br>
+    <div class="button-container">
+        <button (click)="onPost()" class="custom-button">Post</button>
+    </div>
+
+</div>
+
+<div class="newsfeed">
+    <ng-container *ngFor="let post of newsfeed.slice().reverse()">
+        <div class="newsfeed-item" *ngIf="post.userId !== userId">
+            <h3>{{post.userName}}</h3>
+            <pre>{{ post.time | date: 'short' }}</pre><br>
+            <p>{{ post.text }}</p>
+            <img *ngIf="post.fileURL" [src]="'http://localhost:9000/linkedin/'+post.fileURL" alt="Post Image">
+            <br>
+
+        </div>
+    </ng-container>
+</div>

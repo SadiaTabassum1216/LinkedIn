@@ -1,0 +1,107 @@
+
+header {
+    background-color: #0077B5;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  /* Button style for posting */
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #0056b3;
+}
+
+  
+.newsfeed {
+  margin: 5%;
+}
+
+/* Styling for each newsfeed item */
+.newsfeed-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Styling for the post time */
+.newsfeed-item pre {
+  color: #888;
+ 
+}
+
+/* Styling for post images */
+.newsfeed-item img {
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+  main {
+    padding: 20px;
+  }
+
+  img {
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    
+  }
+  
+  
+  .newsfeed-item {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 10px;
+  }
+  
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0077b5;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar-items {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-notification,
+  .navbar-logout {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+
+
+
+  

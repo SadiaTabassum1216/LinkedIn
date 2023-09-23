@@ -1,0 +1,159 @@
+
+header {
+    background-color: #0077B5;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+
+.newsfeed {
+  margin: 5%;
+}
+
+/* Styling for each newsfeed item */
+.newsfeed-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Styling for the post time */
+.newsfeed-item pre {
+  color: #888;
+ 
+}
+
+/* Styling for post images */
+.newsfeed-item img {
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  padding: 20px;
+}
+
+/* Styling for the textarea used for posts */
+textarea {
+  padding: 5%;
+  width: 90%;
+ 
+}
+
+/* Button style for posting */
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+  /* Adjusting the width of the textarea for smaller screens */
+  textarea {
+    width: 100%;
+  }
+}
+
+  
+  .create-post {
+    background-color: #f2f2f2;
+    padding: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  
+  
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0077b5;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar-items {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-notification,
+  .navbar-logout {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .notification-count {
+    background-color: #ff4d4f;
+    color: #fff;
+    border-radius: 50%;
+    padding: 4px 8px;
+  }
+
+.custom-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.file-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff; 
+  color: #ffffff; 
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.file-button:hover {
+  background-color: #0056b3; 
+}
+
+
+.file-button:active {
+  background-color: #003d80; /* Even darker shade of blue when clicked */
+}
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  /* padding-right: 10%; */
+}
+
+
+
+  
