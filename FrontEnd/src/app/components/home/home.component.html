@@ -33,14 +33,22 @@
 </div>
 
 <div class="newsfeed">
-    <ng-container *ngFor="let post of newsfeed.slice().reverse()">
-        <div class="newsfeed-item" *ngIf="post.userId !== userId">
-            <h3>{{post.userName}}</h3>
-            <pre>{{ post.time | date: 'short' }}</pre><br>
-            <p>{{ post.text }}</p>
-            <img *ngIf="post.fileURL" [src]="'http://localhost:9000/linkedin/'+post.fileURL" alt="Post Image">
-            <br>
+    <div *ngIf="newsfeed.length > 0; else noPosts">
+        <ng-container *ngFor="let post of newsfeed.slice().reverse()">
+            <div class="newsfeed-item" *ngIf="post.userId !== userId">
+                <h3>{{post.userName}}</h3>
+                <pre>{{ post.time | date: 'short' }}</pre><br>
+                <p>{{ post.text }}</p>
+                <img *ngIf="post.fileURL" [src]="'http://localhost:9000/linkedin/'+post.fileURL" alt="Post Image">
+                <br>
+            </div>
+        </ng-container>
+    </div>
 
+    <ng-template #noPosts>
+        <div class="no-posts-message">
+            No posts yet
         </div>
-    </ng-container>
+    </ng-template>
+
 </div>

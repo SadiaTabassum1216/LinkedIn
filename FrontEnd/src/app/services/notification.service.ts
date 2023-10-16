@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-const baseUrl = `${environment.apiUrl}/notifications`;
+// const baseUrl = `${environment.apiUrl}/notifications`;
+const baseUrl = `${environment.notificationUrl}/notifications`;
 
 @Injectable({
   providedIn: 'root'

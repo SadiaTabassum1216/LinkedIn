@@ -102,6 +102,16 @@ button:hover {
   }
 
 
+.no-posts-message {
+  font-size: 30px;
+  color: #888;
+  font-style: italic;
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
   

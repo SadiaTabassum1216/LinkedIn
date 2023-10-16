@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-const baseUrl = `${environment.apiUrl}/users`;
+// const baseUrl = `${environment.apiUrl}/users`;
+const baseUrl = `${environment.userUrl}/users`;
 
 @Injectable({
   providedIn: 'root'

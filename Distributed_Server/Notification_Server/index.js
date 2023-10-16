@@ -1,6 +1,23 @@
 const express = require('express');
-const app = express();
+const {connectDB} = require("./config/dbConnection");
+const cron = require("node-cron");
+const {deleteOldNotifications}= require("./config/job");
+
+require("dotenv").config();
+const app=express();
+
+const cors=require('cors');
+app.use(cors());
+connectDB();
+
 const port=process.env.PORT;
+
+// Schedule the job to run every 10 minutes
+// cron.schedule('*/10 * * * *', deleteOldNotifications);
+
+// Schedule the job to run every 6 hours
+cron.schedule('0 */6 * * *', deleteOldNotifications);
+
 
 
 app.use(express.json());
