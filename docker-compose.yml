@@ -1,0 +1,35 @@
+version: '3'
+services:
+  user:
+    build:
+      context: ./Distributed_Server/User_Server
+      dockerfile: ./Dockerfile
+    ports:
+      - "8003:8003"
+
+  post:
+    build:
+      context: ./Distributed_Server/Post_Server
+      dockerfile: ./Dockerfile
+    ports:
+      - "8002:8002"
+
+
+  notification:
+    build:
+      context: ./Distributed_Server/Notification_Server
+      dockerfile: ./Dockerfile
+    ports:
+      - "8001:8001"
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27021:27017"
+
+  minio:
+    image: minio/minio:latest
+    environment:
+     - ./Distributed_Server/Post_Server/.env
+    command: server --address 0.0.0.0:9000 /linkedin
+  
