@@ -6,6 +6,8 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "8003:8003"
+    depends_on:
+      - mongo
 
   post:
     build:
@@ -13,7 +15,9 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "8002:8002"
-
+    depends_on:
+      - mongo
+      - minio
 
   notification:
     build:
@@ -21,15 +25,22 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "8001:8001"
-
-  mongo:
-    image: mongo:latest
-    ports:
-      - "27021:27017"
+    depends_on:
+      - mongo
 
   minio:
     image: minio/minio:latest
     environment:
      - ./Distributed_Server/Post_Server/.env
-    command: server --address 0.0.0.0:9000 /linkedin
-  
+    command: minio server /minIO 0.0.0.0:9000/linkedin
+
+  mongo:
+    image: mongo:latest
+    # environment:
+    #  - ./Distributed_Server/Post_Server/.env
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongodb_data_container:/data/db
+volumes:
+  mongodb_data_container:
