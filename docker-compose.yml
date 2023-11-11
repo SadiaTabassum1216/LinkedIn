@@ -7,9 +7,9 @@ services:
     image: user
     ports:
       - '8003:8003'
-    # volumes:
-    #   - ./Distributed_Server/User_Server:/usr/src/app
-    #   - ./usr/src/app/node_modules
+    volumes:
+      - ./Distributed_Server/User_Server:/usr/src/app
+      - ./usr/src/app/node_modules
   
   notification:
     build: ./Distributed_Server/Notification_Server
@@ -17,9 +17,9 @@ services:
     image: notification
     ports:
       - '8001:8001'
-    # volumes:
-      # - ./Notification/notification-server:/mini-linkedin/notification
-      # - ./mini-linkedin/notification/node_modules
+    volumes:
+      - ./Notification/notification-server:/mini-linkedin/notification
+      - ./mini-linkedin/notification/node_modules
 
   post:
     build: ./Distributed_Server/Post_Server
@@ -28,9 +28,9 @@ services:
 
     ports:
       - '8002:8002'
-    # volumes:
-    #   - ./Distributed_Server/Post_Server:/usr/src/app
-    #   - ./usr/src/app/node_modules
+    volumes:
+      - ./Distributed_Server/Post_Server:/usr/src/app
+      - ./usr/src/app/node_modules
 
   user_db:
     image: mongo:latest

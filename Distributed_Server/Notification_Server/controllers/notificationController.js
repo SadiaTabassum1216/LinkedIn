@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Notification =require("../models/notificationModel");
-const Post = require("../models/postModel");
+const axios = require("axios");
 
 
 //@desc Get remaining notifications
@@ -33,7 +33,10 @@ const getPost = asyncHandler(async (req, res) => {
     await notification.save();
 
     const postId = notification.postId;
-    const post = await Post.findById(postId);
+    // const post = await Post.findById(postId);
+
+    const response = await axios.get(`http:/host.docker.internal/posts/fetchPost/${postId}`);
+    const post = response.data;
 
 
     if (post) {
