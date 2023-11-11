@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 // const baseUrl = `${environment.apiUrl}/notifications`;
-const baseUrl = `${environment.notificationUrl}/notifications`;
+// const baseUrl = `${environment.notificationUrl}/notifications`;
+const baseUrl = `${environment.baseUrl}/notifications';
 
 @Injectable({
   providedIn: 'root'

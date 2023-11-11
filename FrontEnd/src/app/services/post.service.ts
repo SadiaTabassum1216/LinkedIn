@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 
 // const baseUrl = `${environment.apiUrl}/posts`;
-const baseUrl = `${environment.postUrl}/posts`;
+const baseUrl = `${environment.baseUrl}/posts`;
 
 @Injectable({
   providedIn: 'root'
