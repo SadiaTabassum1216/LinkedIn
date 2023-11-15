@@ -1,11 +1,9 @@
-const mongoose = require('mongoose');
-const User = require("../models/userModel");
+const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
-    ref: 'User', 
   },
   userName: {
     type: String,
@@ -14,10 +12,10 @@ const postSchema = new mongoose.Schema({
   text: {
     type: String,
   },
-  
+
   fileURL: {
     type: String,
-    default: '',
+    default: "",
   },
   time: {
     type: Date,
@@ -25,4 +23,4 @@ const postSchema = new mongoose.Schema({
   },
 });
 
-module.exports= mongoose.model('Post', postSchema);
+module.exports = mongoose.model("Post", postSchema);
