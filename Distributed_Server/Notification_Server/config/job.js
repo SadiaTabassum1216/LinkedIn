@@ -19,5 +19,3 @@ const deleteOldNotifications = async () => {
 
 };
 module.exports = { deleteOldNotifications };
-
-
